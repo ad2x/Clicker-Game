@@ -1,3 +1,0 @@
-void game() {
-  background(LGrey);
-}
