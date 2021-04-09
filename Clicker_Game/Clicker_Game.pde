@@ -400,7 +400,7 @@ void draw() {
   //Test
   //coordtest();
   //println(mode);
-  //println(hit_4);'
+  //println(hit_4);
   //println(Math.round(map(sliderX, 90, 710, 10, 50)) + "what");
   //println(Math.round(map(cursorsize, 10, 50, 90, 710)));
   //println(cursorsize);

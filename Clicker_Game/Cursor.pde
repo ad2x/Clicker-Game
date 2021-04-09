@@ -8,7 +8,6 @@ void cursor(int x, int y, int size, boolean user, boolean blinklock, boolean loc
   //==== Cursor Colour ====
   //Setting stroke and fill based on selected skin
 
-  println(skin);
   switch (skin) {
     case 0:
       cursorfill = DGrey;
@@ -93,7 +92,9 @@ void cursor(int x, int y, int size, boolean user, boolean blinklock, boolean loc
   cursorshapecheck();
   
   //Spin cursor counterclockwise if you press esc
-  cursorturnr();
+  if (user == true) {
+    cursorturnr();
+  }
   
   //Apply skin bonuses
   cursoreffects();
