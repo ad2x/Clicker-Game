@@ -2,7 +2,7 @@ void game() {
   background(LGrey);
   
   //Target
-  target(targetX, targetY, targetD);
+  target(targetX, targetY, targetD, targetskin, true);
   
   //Mode framework
   if (game_mode == start_game) {
@@ -23,7 +23,7 @@ void game() {
 //=================================================================
 //=================================================================
 //The target that you click on 
-void target(float x, float y, float d) {
+void target(float x, float y, float d, int skin, boolean game) {
   pushMatrix();
   translate(x, y);
   
@@ -32,13 +32,48 @@ void target(float x, float y, float d) {
     targetStroke = DGrey;
   }
   
+  switch(skin) {
+    case 0:
+      targetFill = Grey;
+      targetStroke = DGrey;
+    case 1:
+      targetFill = Red;
+      targetStroke = DRed;
+      break;
+    case 2:
+      targetFill = Green;
+      targetStroke = DGreen;
+      break;
+    case 3:
+      targetFill = Blue;
+      targetStroke = DBlue;
+      break;
+    case 4:
+      targetFill = DGrey;
+      targetStroke = Black;
+      break;
+    case 5:
+      targetFill = White;
+      targetStroke = LGrey;
+      break;
+    case 6:
+      targetFill = Orange;
+      targetStroke = Yellow;
+      break;
+    case 7:
+      targetFill = cursorfill;
+      targetStroke = cursorstroke;
+      break;
+  }
+  
   fill(targetFill, 210);
   stroke(targetStroke, 210);
-  
+  strokeWeight(10);
+   
   ellipse(0, 0, d, d);
   
   //Movement
-  if (game_mode == playing) {
+  if (game_mode == playing && game == true) {
     targetX = targetX + (velocityX/icebonus);
     targetY = targetY + (velocityY/icebonus);
   }

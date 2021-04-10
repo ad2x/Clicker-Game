@@ -92,9 +92,7 @@ void cursor(int x, int y, int size, boolean user, boolean blinklock, boolean loc
   cursorshapecheck();
   
   //Spin cursor counterclockwise if you press esc
-  if (user == true) {
-    cursorturnr();
-  }
+  cursorturnr();
   
   //Apply skin bonuses
   cursoreffects();

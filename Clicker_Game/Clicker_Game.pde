@@ -46,6 +46,8 @@ color Bronze = #CD7F32;
 color Brown = #964B00;
 color DBrown = #51361a;
 color DDBrown = #171009;
+color Yellow = #ffc921;
+color Orange = #ff8100;
 
 //==== Cursor ====
 boolean cursorc;
@@ -345,7 +347,7 @@ void setup() {
   tmatchingskinlock = Integer.parseInt(tpreferences1[8]);
   
   //Makes sure the size sliders is properly adjusted
-  cursor_rslidermap();
+  cursor_rslidermap(); 
   target_rslidermap();
   
   //==== Target ====
@@ -367,26 +369,43 @@ void draw() {
   generalsave();
   
   //==== Mode Framework ====
-  if (mode == start) {
-    startscreen();
-  } else if (mode == game) {
-    game();
-  } else if (mode == settings) {
-    settingsmenu();
-  } else if (mode == cursor_settings) {
-    cursorsettings();
-  } else if (mode == cursor_shop_settings) {
-    shop();
-  } else if (mode == leaderboard) {
-    leaderboard();
-  } else if (mode == target_settings) {
-    targetsettings();
-  } else if (mode == target_achievements_settings || mode == cursor_achievements_settings) {
-    achievements_settings();
-  } else if (mode == target_shop_settings) {
-    target_shop();
-  } else {
-    println("Mode " + mode + " does not exist");
+  switch(mode) {
+    case 0:
+      startscreen();
+      break;
+    case 1:
+      game();
+      break;
+    case 2:
+      settingsmenu();
+      break;
+    case 3:
+      cursorsettings();
+      break;
+    case 4:
+      shop();
+      break;
+    case 5:
+      leaderboard();
+      break;
+    case 6:
+      println("Error");
+      //I originally planned to add general settings, but changed my mind later, I never got rid of the mode itself though
+      break;
+    case 7:
+      targetsettings();
+      break;
+    case 8:
+      achievements_settings();
+      break;
+    case 9:
+      target_shop();
+      break;
+    case 10:
+      achievements_settings();
+      break;
+    default:
+      println("Mode " + mode + " does not exist");
   }
   
   //Esc pointer
@@ -400,7 +419,7 @@ void draw() {
   //Test
   //coordtest();
   //println(mode);
-  //println(hit_4);
+  //println(hit_4);'
   //println(Math.round(map(sliderX, 90, 710, 10, 50)) + "what");
   //println(Math.round(map(cursorsize, 10, 50, 90, 710)));
   //println(cursorsize);
