@@ -48,6 +48,7 @@ color DBrown = #51361a;
 color DDBrown = #171009;
 color Yellow = #ffc921;
 color Orange = #ff8100;
+color DDGrey = #222222;
 
 //==== Cursor ====
 boolean cursorc;
@@ -182,6 +183,7 @@ float targetD;
 
 color targetFill;
 color targetStroke;
+color targetText;
 
 float velocityX;
 float velocityY;
@@ -198,7 +200,7 @@ final int tgreenskin = 2;
 final int tblueskin = 3;
 final int tblackskin = 4;
 final int twhiteskin = 5;
-final int tsunskin = 6;
+final int tearthskin = 6;
 final int tmatchingskin = 7;
 
 int tredskinlock;
@@ -206,7 +208,7 @@ int tgreenskinlock;
 int tblueskinlock;
 int tblackskinlock;
 int twhiteskinlock;
-int tsunskinlock;
+int tearthskinlock;
 int tmatchingskinlock;
 
 //Mode framework for game pausing and start
@@ -343,7 +345,7 @@ void setup() {
   tblueskinlock = Integer.parseInt(tpreferences1[4]);
   tblackskinlock = Integer.parseInt(tpreferences1[5]);
   twhiteskinlock = Integer.parseInt(tpreferences1[6]);
-  tsunskinlock = Integer.parseInt(tpreferences1[7]);
+  tearthskinlock = Integer.parseInt(tpreferences1[7]);
   tmatchingskinlock = Integer.parseInt(tpreferences1[8]);
   
   //Makes sure the size sliders is properly adjusted

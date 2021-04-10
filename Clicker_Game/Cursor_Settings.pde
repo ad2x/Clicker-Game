@@ -25,6 +25,56 @@ void cursor_closeup(int x, int y) {
   
   cursor(50, 50, 35, false, true, true, cursorskin);
   
+  String name = "";
+  String desc = "";
+  switch(cursorskin) {
+    case 0:
+      name = "Default";
+      desc = "No bonuses";
+      break;
+    case 1:
+      name = "Red";
+      desc = "No bonuses";
+      break;
+    case 2:
+      name = "Green";
+      desc = "No bonuses";
+      break;
+    case 3:
+      name = "Blue";
+      desc = "No bonuses";
+      break;
+    case 4:
+      name = "White";
+      desc = "No bonuses";
+      break;
+    case 5:
+      name = "Gold";
+      desc = "2x cash";
+      break;
+    case 6:
+      name = "Time";
+      desc = "2x time limit";
+      break;
+    case 7:
+      name = "Ice";
+      desc = "Slow target";
+      break;
+    case 8:
+      name = "Lava";
+      desc = "Missing doesn't lose points";
+      break;
+  }
+  
+  textSize(45);
+  fill(Black);
+  
+  text(name, 162.5, 40);
+  
+  textSize(25);
+  
+  text(desc, 162.5, 250);
+  
   popMatrix();
 }
 
@@ -183,19 +233,19 @@ void skinselector(int x, int y) {
 
 //Slots for skins in inventory
 void skinslots() {
-  skinslot(65, 60, defaultskin, 1);
-  skinslot(163, 60, redskin, redskinlock);
-  skinslot(260, 60, greenskin, greenskinlock);
-  skinslot(65, 150, blueskin, blueskinlock);
-  skinslot(163, 150, whiteskin, whiteskinlock);
-  skinslot(260, 150, goldskin, goldskinlock);
-  skinslot(65, 240, timeskin, timeskinlock);
-  skinslot(163, 240, iceskin, iceskinlock);
-  skinslot(260, 240, lavaskin, lavaskinlock);
+  skinslot(65, 60, defaultskin, 1, true);
+  skinslot(163, 60, redskin, redskinlock, true);
+  skinslot(260, 60, greenskin, greenskinlock, true);
+  skinslot(65, 150, blueskin, blueskinlock, true);
+  skinslot(163, 150, whiteskin, whiteskinlock, true);
+  skinslot(260, 150, goldskin, goldskinlock, true);
+  skinslot(65, 240, timeskin, timeskinlock, true);
+  skinslot(163, 240, iceskin, iceskinlock, true);
+  skinslot(260, 240, lavaskin, lavaskinlock, true);
 }
 
 //Invididual skinslot
-void skinslot(int x, int y, int skin, int unlocked) {
+void skinslot(int x, int y, int skin, int unlocked, boolean cursor) {
   pushMatrix();
   translate(x, y);
   
@@ -204,10 +254,17 @@ void skinslot(int x, int y, int skin, int unlocked) {
   strokeWeight(5);
   
   //Hover
+  String[] preferences = new String[10];
   
-  String[] preferences = loadStrings("cursorsave.txt");
-  
-  if (dist(mouseX, mouseY, x + 50, y + 450) <= 40 && (Integer.parseInt(preferences[skin + 1]) == 1 || skin == defaultskin)) {
+  if (cursor == true) {
+    String[] preferences1 = loadStrings("cursorsave.txt");
+    preferences = preferences1;
+  } else if (cursor == false) {
+    String[] preferences1 = loadStrings("targetsave.txt");
+    preferences = preferences1;
+  }
+      
+  if (dist(mouseX, mouseY, x + 50, y + 450) <= 40 && (Integer.parseInt(preferences[skin + 1]) == 1 || skin == 0)) {
     noStroke();
     fill(LGrey);
   }
@@ -215,8 +272,11 @@ void skinslot(int x, int y, int skin, int unlocked) {
   ellipse(0, 0, 80, 80);
   
   //Only show cursor if unlocked
-  if (unlocked == 1) {
+  if (unlocked == 1 && cursor == true) {
     cursor(0, 0, 30, false, true, false, skin); 
+  } else if (unlocked == 1 && cursor == false) {
+    target(0, 0, 40, skin, false);
+    println(1);
   }
   
   popMatrix();
@@ -225,7 +285,11 @@ void skinslot(int x, int y, int skin, int unlocked) {
   //I found a way to effectively turn mouseReleased() into a variable for this function
   
   if (skinhitcheck(x + 50, y + 450, skin) && click == true && unlocked == 1) {
-    cursorskin = skin;
+    if (cursor == true) {
+      cursorskin = skin;
+    } else {
+      targetskin = skin;
+    }
     click = false;
   }
 }

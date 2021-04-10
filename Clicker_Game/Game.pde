@@ -11,8 +11,8 @@ void game() {
     gameplay();
     timer(targetX, targetY);
   } else if (game_mode == paused) {
-    paused();
     timer(targetX, targetY);
+    paused();
   } else if (game_mode == game_over) {
     background(Grey);
     gameover();
@@ -26,43 +26,47 @@ void game() {
 void target(float x, float y, float d, int skin, boolean game) {
   pushMatrix();
   translate(x, y);
-  
-  if (targetskin == defaultskin) {
-    targetFill = Grey;
-    targetStroke = DGrey;
-  }
-  
+    
   switch(skin) {
     case 0:
-      targetFill = Grey;
-      targetStroke = DGrey;
+      targetFill = DGrey;
+      targetStroke = DDGrey;
+      targetText = DDGrey;
+      break;
     case 1:
       targetFill = Red;
       targetStroke = DRed;
+      targetText = DRed;
       break;
     case 2:
       targetFill = Green;
       targetStroke = DGreen;
+      targetText = DGreen;
       break;
     case 3:
       targetFill = Blue;
       targetStroke = DBlue;
+      targetText = DBlue;
       break;
     case 4:
       targetFill = DGrey;
       targetStroke = Black;
+      targetText = White;
       break;
     case 5:
       targetFill = White;
       targetStroke = LGrey;
+      targetText = Black;
       break;
     case 6:
       targetFill = Orange;
       targetStroke = Yellow;
+      targetText = Yellow;
       break;
     case 7:
       targetFill = cursorfill;
       targetStroke = cursorstroke;
+      targetText = cursorstroke;
       break;
   }
   
@@ -110,7 +114,7 @@ void targetsavepref(boolean skinunlock, int skintochange) {
   tblueskinlock = tpreferences2[4];
   tblackskinlock = tpreferences2[5];
   twhiteskinlock = tpreferences2[6];
-  tsunskinlock = tpreferences2[7];
+  tearthskinlock = tpreferences2[7];
   tmatchingskinlock = tpreferences2[8];
   
   if (skinunlock == true) {
@@ -174,7 +178,7 @@ void timer(float x, float y) {
   if (secondsleft > gametime) {
     fill(LBlue);
   } else {
-    fill((150/gametime)*(gametime - secondsleft), 0, 0, 140);
+    fill(targetText, 0, 0, 140);
   }
 
   textSize(60);

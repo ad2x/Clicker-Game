@@ -8,6 +8,10 @@ void targetsettings() {
   
   shopbutton();
   shopbuttoncheck();
+  
+  target_closeup(425, 450);
+  
+  tskinselector(50, 450);
 }
 
 //=================================================================
@@ -88,4 +92,53 @@ void target_difficulty_set() {
     targetD = 225;
   }
   target_rslidermap();
+}
+
+//=================================================================
+//=================================================================
+
+//Target viewer
+void target_closeup(int x, int y) {
+  pushMatrix();
+  translate(x, y);
+  
+  fill(Grey);
+  stroke(DGrey);
+  strokeWeight(10);
+  
+  rect(0, 0, 325, 300);  
+  
+  target(163, 150, 200, targetskin, false);
+  
+  popMatrix();
+}
+
+//=================================================================
+//=================================================================
+
+//Inventory
+void tskinselector(int x, int y) {
+  pushMatrix();
+  translate(x, y);
+  
+  fill(Grey);
+  stroke(DGrey);
+  strokeWeight(10);
+  
+  rect(0, 0, 325, 300);
+  
+  tskinslots();
+  
+  popMatrix();
+}
+
+void tskinslots() {
+  skinslot(65, 60, 0, 1, false);
+  skinslot(163, 60, 1, tredskinlock, false);
+  skinslot(260, 60, 2, tgreenskinlock, false);
+  skinslot(65, 150, 3, tblueskinlock, false);
+  skinslot(163, 150, 4, tblackskinlock, false);
+  skinslot(260, 150, 5, twhiteskinlock, false);
+  skinslot(65, 240, 6, tearthskinlock, false);
+  skinslot(163, 240, 7, tmatchingskinlock, false);
 }
