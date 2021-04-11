@@ -145,6 +145,10 @@ void skinbox(int x, int y, int skin, int price, String name, String desc1, Strin
     
     textSize(30);
     
+    if (skin == 6 && cursor == false) {
+      textSize(26);
+    }
+    
     text(desc1, 275, 650);
     text(desc2, 275, 700);
   }

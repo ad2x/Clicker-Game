@@ -292,8 +292,10 @@ void scorecounter() {
 
 //The score counter grows if your score is increasing and shrinks if it isn't 
 void scorecountersize() {
-  if (scoreup = true && scoresize < 250) {
+  if (scoreup = true && scoresize < 250 && targetskin != tsunskin) {
     scoresize = scoresize + 10;
+  } else if (targetskin == tsunskin) {
+    scoresize = scoresize + 15;
   } else if (game_mode == playing) {
     scoresize = scoresize - 5;
   }

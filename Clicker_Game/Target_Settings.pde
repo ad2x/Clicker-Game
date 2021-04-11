@@ -139,7 +139,7 @@ void target_closeup(int x, int y) {
       break;
     case 6:
       name = "Sun";
-      desc = "[placeholder]";
+      desc = "Score size increases faster";
       break;
     case 7:
       name = "Matching";
