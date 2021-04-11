@@ -1,5 +1,9 @@
 void game() {
-  background(LGrey);
+  if (targetskin == twhiteskin) {
+    background(Black);
+  } else {
+    background(LGrey);
+  }
   
   //Target
   target(targetX, targetY, targetD, targetskin, true);
@@ -55,7 +59,7 @@ void target(float x, float y, float d, int skin, boolean game) {
       break;
     case 5:
       targetFill = White;
-      targetStroke = LGrey;
+      targetStroke = White;
       targetText = Black;
       break;
     case 6:
@@ -68,6 +72,10 @@ void target(float x, float y, float d, int skin, boolean game) {
       targetStroke = tmatchingstroke;
       targetText = tmatchingstroke;
       break;
+    case 8:
+      targetFill = BSilver;
+      targetStroke = BGold;
+      targetText = Bronze;
   }
   
   fill(targetFill, 210);
@@ -108,6 +116,7 @@ void targetsavepref(boolean skinunlock, int skintochange) {
   tpreferences2[6] = Integer.parseInt(tpreferences1[6]);
   tpreferences2[7] = Integer.parseInt(tpreferences1[7]);
   tpreferences2[8] = Integer.parseInt(tpreferences1[8]);
+  tpreferences2[9] = Integer.parseInt(tpreferences1[9]);
   
   tredskinlock = tpreferences2[2];
   tgreenskinlock = tpreferences2[3];
@@ -116,6 +125,7 @@ void targetsavepref(boolean skinunlock, int skintochange) {
   twhiteskinlock = tpreferences2[6];
   tsunskinlock = tpreferences2[7];
   tmatchingskinlock = tpreferences2[8];
+  tplacesskinlock = tpreferences2[9];
   
   if (skinunlock == true) {
     tpreferences2[(skintochange + 1)] = 1;
@@ -131,10 +141,7 @@ void targetsavepref(boolean skinunlock, int skintochange) {
 //=================================================================
 //=================================================================
 //Randomizes the target velocity each time, I came up with this elaborate way of making sure the actual speed of the target is the same each time because I didn't like my game being luck based
-void targetRandom() {
-  //First I get a random degree from 0-360 around the origin
-  float random = random(0, 360);
-  
+void targetRandom(float random) {
   //Makes the vertical and horizontal components negative or positive depending on the quadrant
   int xneg;
   int yneg;
@@ -175,10 +182,10 @@ void timer(float x, float y) {
   pushMatrix();
   translate(x, y);
   
+  fill(targetText, 140);
+  
   if (secondsleft > gametime) {
     fill(LBlue);
-  } else {
-    fill(targetText, 0, 0, 140);
   }
 
   textSize(60);
@@ -257,9 +264,25 @@ void scoreincrease() {
 
 void scorecounter() {
   pushMatrix();
+  
   translate(width/2, height/2);
   
-  fill(Black, 100);
+  if (targetskin == twhiteskin) {
+    fill(White, 100);
+  } else {
+    fill(Black, 100);
+  }
+  
+  if (targetskin == tplacesskin) {
+    if (score > score1) {
+      fill(Gold);
+    } else if (score > score2) {
+      fill(Silver);
+    } else if (score > score3) {
+      fill(Bronze);
+    }
+  }
+  
   textSize(80 + scoresize);
   
   text(score, 0, 0);
@@ -492,7 +515,7 @@ void playagain(int x, int y) {
 void playagaincheck(int x, int y) {
   if (mouseX >= x - 65 && mouseX <= x + 65 && mouseY >= y - 50 && mouseY <= y + 50 && game_mode == game_over) {
     //Reset the pos and get a new random direction for the target
-    targetRandom();
+    targetRandom(random(0, 360));
     
     score = 0;
     secondsleft = gametime;

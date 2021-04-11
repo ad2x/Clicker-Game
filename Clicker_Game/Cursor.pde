@@ -93,13 +93,11 @@ void cursor(int x, int y, int size, boolean user, boolean blinklock, boolean loc
   //Check if cursor ckicks on a button, and if so makes it spin
   if (user == true) {
     cursorturn();
+    cursorturnr();
   }
   
   //Check if the game mode is game so it can change shape
   cursorshapecheck();
-  
-  //Spin cursor counterclockwise if you press esc
-  cursorturnr();
   
   //Apply skin bonuses
   cursoreffects();

@@ -3,7 +3,8 @@ void achievements_settings() {
   
   achievement(50, 50, 7, 1, "Ice Cursor", "Play 25 Games", 25, gamesplayed);
   achievement(425, 50, 8, 1, "Lava Cursor", "Earn 3000 Points", 3000, pointsearned);
-  achievement(50, 425, 7, 2, "Matching Target", "Have a highscore of 120", 120, score1);
+  achievement(50, 425, 7, 2, "Matching Target", "Spend $1000", 1000, cashspent);
+  achievement(425, 425, 8, 2, "Rankings Target", "Have a highscore of 120", 120, score1);
 }
 
 //=================================================================

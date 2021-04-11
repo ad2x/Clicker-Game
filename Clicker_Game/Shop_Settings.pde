@@ -94,6 +94,7 @@ void skinbox(int x, int y, int skin, int price, String name, String desc1, Strin
     //I ended up using mousePressed instead of mouseReleased for the shop buttons since mouseReleased doesn't have a global variable for some reason
     if (mousePressed == true && price < balance && Integer.parseInt(preferences[skin + 1]) == 0 && skin != 0) {
       balance = balance - price;
+      cashspent = cashspent + price;
       
       if (cursor == true) {
         savecursorpreferences(true, skin);
@@ -113,7 +114,7 @@ void skinbox(int x, int y, int skin, int price, String name, String desc1, Strin
   if (cursor == true) {
     cursor(100, 75, 60, false, true, true, skin);
   } else {
-    target(100, 75, 60, skin, false);
+    target(100, 75, 90, skin, false);
   }
   
   //Price text

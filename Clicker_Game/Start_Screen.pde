@@ -93,7 +93,7 @@ void tributtoncheck_1() {
     score = 0;
     
     //Reset the pos and get a new random direction for the target
-    targetRandom();
+    targetRandom(random(0, 360));
     
     //Toggle cursorspin
     if (cursorspin == false) {

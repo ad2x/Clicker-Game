@@ -49,6 +49,8 @@ color DDBrown = #171009;
 color Yellow = #ffc921;
 color Orange = #ff8100;
 color DDGrey = #222222;
+color BSilver = #D8D8D8;
+color BGold = #FFD700;
 
 //==== Cursor ====
 boolean cursorc;
@@ -202,6 +204,7 @@ final int tbgskin = 4;
 final int twhiteskin = 5;
 final int tsunskin = 6;
 final int tmatchingskin = 7;
+final int tplacesskin = 8;
 
 int tredskinlock;
 int tgreenskinlock;
@@ -210,6 +213,7 @@ int tbgskinlock;
 int twhiteskinlock;
 int tsunskinlock;
 int tmatchingskinlock;
+int tplacesskinlock;
 
 color tmatchingfill;
 color tmatchingstroke;
@@ -266,7 +270,7 @@ int newbalance;
 //==== Achievements ====
 boolean achievementbuttoncheck;
 
-//Games played achievement
+//Achievements
 int gamesplayed;
 int pointsearned;
 int cashspent;
@@ -338,6 +342,7 @@ void setup() {
   balance = Integer.parseInt(general1[0]);
   gamesplayed = Integer.parseInt(general1[1]);
   pointsearned = Integer.parseInt(general1[2]);
+  cashspent = Integer.parseInt(general1[3]);
   
   //==== Target Config ====
   String[] tpreferences1 = loadStrings("targetsave.txt");
@@ -351,6 +356,7 @@ void setup() {
   twhiteskinlock = Integer.parseInt(tpreferences1[6]);
   tsunskinlock = Integer.parseInt(tpreferences1[7]);
   tmatchingskinlock = Integer.parseInt(tpreferences1[8]);
+  tplacesskinlock = Integer.parseInt(tpreferences1[9]);
   
   //Makes sure the size sliders is properly adjusted
   cursor_rslidermap(); 
@@ -582,10 +588,11 @@ boolean triPoint(float x1, float y1, float x2, float y2, float x3, float y3) {
 //Function for saving balance + achievements
 void generalsave() {
     //Creates a general array to save the balance value
-    int[] general2 = new int[3];
+    int[] general2 = new int[4];
     general2[0] = balance;
     general2[1] = gamesplayed;
     general2[2] = pointsearned;
+    general2[3] = cashspent;
     
     String[] general2string = str(general2);
     saveStrings("general.txt", general2string);

@@ -108,7 +108,61 @@ void target_closeup(int x, int y) {
   
   rect(0, 0, 325, 300);  
   
-  target(163, 150, 200, targetskin, false);
+  target(163, 150, 150, targetskin, false);
+  
+  String name = "";
+  String desc = "";
+  switch(targetskin) {
+    case 0:
+      name = "Default";
+      desc = "No bonuses";
+      break;
+    case 1:
+      name = "Red";
+      desc = "No bonuses";
+      break;
+    case 2:
+      name = "Green";
+      desc = "No bonuses";
+      break;
+    case 3:
+      name = "Blue";
+      desc = "No bonuses";
+      break;
+    case 4:
+      name = "Neon Green";
+      desc = "No bonuses";
+      break;
+    case 5:
+      name = "White";
+      desc = "Background is black";
+      break;
+    case 6:
+      name = "Sun";
+      desc = "[placeholder]";
+      break;
+    case 7:
+      name = "Matching";
+      desc = "Matches cursor skin";
+      break;
+    case 8:
+      name = "Rankings";
+      desc = "Score colour reflects current scores rank";
+      break;
+  }  
+  
+  textSize(45);
+  fill(Black);
+  
+  text(name, 162.5, 40);
+  
+  textSize(25);
+  
+  if (targetskin == tplacesskin) {
+    textSize(15);
+  }
+  
+  text(desc, 162.5, 250);
   
   popMatrix();
 }
@@ -141,4 +195,5 @@ void tskinslots() {
   skinslot(260, 150, 5, twhiteskinlock, false);
   skinslot(65, 240, 6, tsunskinlock, false);
   skinslot(163, 240, 7, tmatchingskinlock, false);
+  skinslot(260, 240, 8, tplacesskinlock, false);
 }
