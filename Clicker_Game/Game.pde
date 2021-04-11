@@ -49,9 +49,9 @@ void target(float x, float y, float d, int skin, boolean game) {
       targetText = DBlue;
       break;
     case 4:
-      targetFill = DGrey;
+      targetFill = LGreen;
       targetStroke = Black;
-      targetText = White;
+      targetText = Black;
       break;
     case 5:
       targetFill = White;
@@ -64,9 +64,9 @@ void target(float x, float y, float d, int skin, boolean game) {
       targetText = Yellow;
       break;
     case 7:
-      targetFill = cursorfill;
-      targetStroke = cursorstroke;
-      targetText = cursorstroke;
+      targetFill = tmatchingfill;
+      targetStroke = tmatchingstroke;
+      targetText = tmatchingstroke;
       break;
   }
   
@@ -112,9 +112,9 @@ void targetsavepref(boolean skinunlock, int skintochange) {
   tredskinlock = tpreferences2[2];
   tgreenskinlock = tpreferences2[3];
   tblueskinlock = tpreferences2[4];
-  tblackskinlock = tpreferences2[5];
+  tbgskinlock = tpreferences2[5];
   twhiteskinlock = tpreferences2[6];
-  tearthskinlock = tpreferences2[7];
+  tsunskinlock = tpreferences2[7];
   tmatchingskinlock = tpreferences2[8];
   
   if (skinunlock == true) {

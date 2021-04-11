@@ -198,18 +198,21 @@ final int tdefaultskin = 0;
 final int tredskin = 1;
 final int tgreenskin = 2;
 final int tblueskin = 3;
-final int tblackskin = 4;
+final int tbgskin = 4;
 final int twhiteskin = 5;
-final int tearthskin = 6;
+final int tsunskin = 6;
 final int tmatchingskin = 7;
 
 int tredskinlock;
 int tgreenskinlock;
 int tblueskinlock;
-int tblackskinlock;
+int tbgskinlock;
 int twhiteskinlock;
-int tearthskinlock;
+int tsunskinlock;
 int tmatchingskinlock;
+
+color tmatchingfill;
+color tmatchingstroke;
 
 //Mode framework for game pausing and start
 //I kind of regret not doing the same for the settings screen but it seems pointless now
@@ -266,6 +269,7 @@ boolean achievementbuttoncheck;
 //Games played achievement
 int gamesplayed;
 int pointsearned;
+int cashspent;
 
 void setup() {
   size(800, 800, FX2D);
@@ -343,9 +347,9 @@ void setup() {
   tredskinlock = Integer.parseInt(tpreferences1[2]);
   tgreenskinlock = Integer.parseInt(tpreferences1[3]);
   tblueskinlock = Integer.parseInt(tpreferences1[4]);
-  tblackskinlock = Integer.parseInt(tpreferences1[5]);
+  tbgskinlock = Integer.parseInt(tpreferences1[5]);
   twhiteskinlock = Integer.parseInt(tpreferences1[6]);
-  tearthskinlock = Integer.parseInt(tpreferences1[7]);
+  tsunskinlock = Integer.parseInt(tpreferences1[7]);
   tmatchingskinlock = Integer.parseInt(tpreferences1[8]);
   
   //Makes sure the size sliders is properly adjusted

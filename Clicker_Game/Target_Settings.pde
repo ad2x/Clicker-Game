@@ -137,8 +137,8 @@ void tskinslots() {
   skinslot(163, 60, 1, tredskinlock, false);
   skinslot(260, 60, 2, tgreenskinlock, false);
   skinslot(65, 150, 3, tblueskinlock, false);
-  skinslot(163, 150, 4, tblackskinlock, false);
+  skinslot(163, 150, 4, tbgskinlock, false);
   skinslot(260, 150, 5, twhiteskinlock, false);
-  skinslot(65, 240, 6, tearthskinlock, false);
+  skinslot(65, 240, 6, tsunskinlock, false);
   skinslot(163, 240, 7, tmatchingskinlock, false);
 }

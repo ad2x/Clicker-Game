@@ -3,6 +3,7 @@ void achievements_settings() {
   
   achievement(50, 50, 7, 1, "Ice Cursor", "Play 25 Games", 25, gamesplayed);
   achievement(425, 50, 8, 1, "Lava Cursor", "Earn 3000 Points", 3000, pointsearned);
+  achievement(50, 425, 7, 2, "Matching Target", "Have a highscore of 120", 120, score1);
 }
 
 //=================================================================
@@ -24,17 +25,24 @@ void achievement(int x, int y, int rewardn, int rewardt, String rewardname, Stri
   strokeWeight(10);
   
   //You can't get the same achievement twice
-  String[] preferences = loadStrings("cursorsave.txt");
+  String[] preferences = new String[10];
+  
   if (rewardt == 1) {
-    if (currentn >= totalreq && mouseX > x && mouseX < x + 325 && mouseY > y && mouseY < y + 325 && Integer.parseInt(preferences[rewardn + 1]) == 0) {
+    String[] preferences1 = loadStrings("cursorsave.txt");
+    preferences = preferences1;
+  } else if (rewardt == 2) {
+    String[] preferences1 = loadStrings("targetsave.txt");
+    preferences = preferences1;
+  }
+  
+  if (currentn >= totalreq && mouseX > x && mouseX < x + 325 && mouseY > y && mouseY < y + 325 && Integer.parseInt(preferences[rewardn + 1]) == 0) {
     stroke(60);
-    }
   }
   
   rect(0, 0, 325, 325);
   
   fill(Black);
-  textSize(50);
+  textSize(45);
   
   text(rewardname, 162.5, 35);
   
@@ -46,7 +54,7 @@ void achievement(int x, int y, int rewardn, int rewardt, String rewardname, Stri
   if (rewardt == 1) {
     cursor(163, 130, 90, false, true, true, rewardn);
   } else if (rewardt == 2) {
-    //Show target reward
+    target(163, 130, 100, rewardn, false);
   }
   
   fill(DGrey);
@@ -62,8 +70,12 @@ void achievement(int x, int y, int rewardn, int rewardt, String rewardname, Stri
     rect(25, 250, 275, 50);
     
     //Unlock reward
-    if (rewardt == 1 && mousePressed == true) {
-      savecursorpreferences(true, rewardn);
+    if (mousePressed == true) {
+      if (rewardt == 1) {
+        savecursorpreferences(true, rewardn);
+      } else {
+        targetsavepref(true, rewardn);
+      }
     }
   } else {
     fill(Black);
@@ -73,7 +85,7 @@ void achievement(int x, int y, int rewardn, int rewardt, String rewardname, Stri
     rect(25, 250, barX, 50);
   }
   
-  if (rewardt == 1 && Integer.parseInt(preferences[rewardn + 1]) == 1) {
+  if (Integer.parseInt(preferences[rewardn + 1]) == 1) {
     fill(DGrey);
     stroke(DGrey);
     strokeWeight(5);

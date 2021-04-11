@@ -276,7 +276,6 @@ void skinslot(int x, int y, int skin, int unlocked, boolean cursor) {
     cursor(0, 0, 30, false, true, false, skin); 
   } else if (unlocked == 1 && cursor == false) {
     target(0, 0, 40, skin, false);
-    println(1);
   }
   
   popMatrix();

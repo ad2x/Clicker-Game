@@ -47,6 +47,13 @@ void cursor(int x, int y, int size, boolean user, boolean blinklock, boolean loc
       break;
   }
   
+  //For matching target
+  //Had to use seperate variables like so as otherwise it just copies the colour scheme of the most recently called cursor 
+  if (user == true) {
+    tmatchingfill = cursorfill;
+    tmatchingstroke = cursorstroke;
+  }
+  
   fill(cursorfill, 120);
   stroke(cursorstroke);
   

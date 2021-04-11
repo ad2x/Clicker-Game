@@ -9,12 +9,12 @@ void shop() {
   line(50, 525, 750, 525);
   
   //Skin boxes
-  skinbox(50, 50, 1, 50, "Red", "A basic red cursor", "");
-  skinbox(300, 50, 2, 50, "Green", "A basic green cursor", "");
-  skinbox(550, 50, 3, 50, "Blue", "A basic blue cursor", "");
-  skinbox(50, 300, 4, 200, "Translucent", "A translucent cursor", "");
-  skinbox(300, 300, 5, 500, "Golden", "A special golden cursor,", "using it will give you bonus money");
-  skinbox(550, 300, 6, 500, "Time", "A special time cursor,", "using it will give you extra time");
+  skinbox(50, 50, 1, 50, "Red", "A basic red cursor", "", true);
+  skinbox(300, 50, 2, 50, "Green", "A basic green cursor", "", true);
+  skinbox(550, 50, 3, 50, "Blue", "A basic blue cursor", "", true);
+  skinbox(50, 300, 4, 200, "Translucent", "A translucent cursor", "", true);
+  skinbox(300, 300, 5, 500, "Golden", "A special golden cursor,", "using it will give you bonus money", true);
+  skinbox(550, 300, 6, 500, "Time", "A special time cursor,", "using it will give you extra time", true);
 }
 
 //Shows your current balance 
@@ -52,7 +52,7 @@ void skindisplay(int x, int y) {
 }
 
 //The boxes that the skins on sale are shown in
-void skinbox(int x, int y, int skin, int price, String name, String desc1, String desc2) {
+void skinbox(int x, int y, int skin, int price, String name, String desc1, String desc2, boolean cursor) {
   pushMatrix();
   translate(x, y);
    
@@ -60,7 +60,15 @@ void skinbox(int x, int y, int skin, int price, String name, String desc1, Strin
   stroke(DGrey);
   strokeWeight(10);
   
-  String[] preferences = loadStrings("cursorsave.txt");
+  String[] preferences = new String[10];
+  
+  if (cursor == true) {
+    String[] preferences1 = loadStrings("cursorsave.txt");
+    preferences = preferences1;
+  } else if (cursor == false) {
+    String[] preferences1 = loadStrings("targetsave.txt");
+    preferences = preferences1;
+  }
   
   boolean[] hovered = new boolean[6];
   
@@ -87,7 +95,11 @@ void skinbox(int x, int y, int skin, int price, String name, String desc1, Strin
     if (mousePressed == true && price < balance && Integer.parseInt(preferences[skin + 1]) == 0 && skin != 0) {
       balance = balance - price;
       
-      savecursorpreferences(true, skin);
+      if (cursor == true) {
+        savecursorpreferences(true, skin);
+      } else {
+        targetsavepref(true, skin);
+      }
     }
   }
   
@@ -98,7 +110,11 @@ void skinbox(int x, int y, int skin, int price, String name, String desc1, Strin
   rect(0, 150, 200, 50);
   
   //Skin
-  cursor(100, 75, 60, false, true, true, skin);
+  if (cursor == true) {
+    cursor(100, 75, 60, false, true, true, skin);
+  } else {
+    target(100, 75, 60, skin, false);
+  }
   
   //Price text
   if (balance > price) {
@@ -120,7 +136,11 @@ void skinbox(int x, int y, int skin, int price, String name, String desc1, Strin
     fill(Black);
     textSize(50);
     
-    text(name + " Cursor", 275, 600);
+    if (cursor == true) {
+      text(name + " Cursor", 275, 600);
+    } else {
+      text(name + " Target", 275, 600);
+    }
     
     textSize(30);
     
